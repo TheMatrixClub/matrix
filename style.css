@@ -1,0 +1,130 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+html{
+    scroll-behavior: smooth;
+}
+
+
+.first{
+    height: 100vh;
+    position: relative;
+}
+
+.boxmain{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    font-family:'Darker Grotesque',sans-serif;
+    height: 100vh;
+}
+
+.firsthalf{
+    width: 50%;
+    height: 60%;
+    margin-left: 10vh;
+    margin-top: 40vh;
+}
+
+.heading{
+    font-size: 4vw;
+    color: white;
+}
+
+.text-small{
+    font-size: 2.5vw;
+    color: white;
+}
+
+.button{
+    margin-top: 1vw;
+    font-size: 2vw;
+    padding: 0.7vw 0.7vw;
+    border-radius: 50px;
+    border-color: black;
+    border-width: 3px;
+    background-color: white;
+}
+
+.button a{
+    text-decoration: none;
+    color: black;
+}
+
+.button a:hover{
+    color: rgba(6, 34, 112, 0.767);
+}
+
+.secondhalf{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 15vh;
+    position: relative;
+}
+
+#bg{
+    width: 100%;
+}
+
+#matrix{
+    width: 50%;
+    position: absolute;
+}
+
+.background{
+    background: url(images/background.jpg);
+}
+
+.background1{
+    background: rgba(0, 0, 0, 0.4) url(images/background.jpg);
+    background-blend-mode: darken;
+}
+
+.waves{
+    aspect-ratio: 960/300;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.wave{
+    background-image: url(wave2.svg);
+}
+
+@media only screen and (max-width: 762px){
+    .boxmain{
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+    .firsthalf{
+        margin-top: -10vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 70%;
+    }
+
+    .heading{
+        align-self: center;
+        font-size: 5vw;
+        margin-top: 2vw;
+    }
+
+    .text-small{
+        align-self: center;
+        font-size: 3vw;
+    }
+
+    .button{
+        align-self: center;
+        margin-top: 3vw;
+        font-size: 2.7vw;
+    }
+}

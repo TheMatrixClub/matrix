@@ -1,0 +1,89 @@
+.body {
+    text-align: center;
+    position: relative;
+   
+}
+/* title */
+.team-title h1{
+    font-family: 'Jura', sans-serif;
+    font-size: 3.75rem;
+}
+
+/* tab section */
+ul{
+    list-style-type: none;
+    padding: 0% 0%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:center;
+}
+li{
+    padding: .2rem .9rem;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: .9rem;
+    font-weight: 600;
+}
+.tab-bar{
+    margin: 30px auto 0px;
+}
+/* card */
+img{
+    border-radius: 50%;
+    width: 75%;
+    margin: 5% auto;
+    transition: .5s;
+}
+.cards:hover img{
+    transform: scale(1.1);
+}
+h4{
+    margin: 10px auto;
+    
+    
+}
+h5{
+    font-family: 'Montserrat', sans-serif;
+    font-weight:bold;
+    margin-top: 10px;
+    letter-spacing: .05rem;
+}
+p{
+    font-family: 'Lato', sans-serif;
+    color: rgb(7, 7, 182);
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: small;
+    letter-spacing: .2rem;
+    
+}
+.cards{
+   position: relative;
+   align-items: center;
+   text-align: center;
+   margin:  auto;
+   padding: 0% 10%;
+}
+@media only screen and (max-width: 580px) {
+    .cards{
+        width: 280px;
+    }
+}
+ 
+.section{
+    position: absolute ;
+    
+   display: none;
+} 
+#section1{
+    display:block;
+}
+#tab1{
+    color:white;
+    background-color: rgb(18, 18, 175);
+}
+hr{
+    border: none;
+    border-top: 3px solid blue;
+    width: 10%;
+    margin:0% auto 20px;
+}

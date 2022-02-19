@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>carousel</title>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      cursor: none;
+    }
+    /* loader */
+    .loader-wrapper {
+      width: 100%;
+      height: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 99;
+      background-color: #242f3f;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .loader {
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      position: relative;
+      border: 4px solid #fff;
+      animation: loader 2s infinite ease;
+    }
+    .loader-inner {
+      vertical-align: top;
+      display: inline-block;
+      width: 100%;
+      background-color: #fff;
+      animation: loader-inner 2s infinite ease-in;
+    }
+
+    @keyframes loader {
+      0% {
+        transform: rotate(0deg);
+      }
+      25% {
+        transform: rotate(180deg);
+      }
+      50% {
+        transform: rotate(180deg);
+      }
+      75% {
+        transform: rotate(360deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+    @keyframes loader-inner {
+      0% {
+        height: 0%;
+      }
+      25% {
+        height: 0%;
+      }
+      50% {
+        height: 100%;
+      }
+      75% {
+        height: 100%;
+      }
+      100% {
+        height: 0%;
+      }
+    }
+
+    #page {
+      user-select: none;
+      background-color: #eee;
+      background-image: url("ur.jpg");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 100%;
+      height: 600px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+    }
+    #slider {
+      position: relative;
+      width: 50%;
+      height: 30vw;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      margin: 100px auto;
+      perspective: 1400px;
+      transform-style: preserve-3d;
+    }
+    input[type="radio"] {
+      position: relative;
+      top: 96%;
+      left: 50%;
+      margin: 0 15px 0 0;
+      width: 15px;
+      height: 15px;
+      transform: translateX(-114px);
+      z-index: 3;
+      opacity: 0.2;
+      animation: animation 14s linear infinite;
+      cursor: pointer;
+    }
+
+    input[type="radio"]:checked {
+      opacity: 1;
+    }
+    #slider label {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 15px;
+      transition: 600ms ease-in-out;
+    }
+    label img {
+      width: 100%;
+      height: 100%;
+      border-radius: 15px;
+    }
+
+    label::before {
+      content: "There is no announcement for now";
+      position: absolute;
+      z-index: 5;
+      background-color: transparent;
+      color: red;
+      font-size: larger;
+      text-align: center;
+      font-weight: bolder;
+      width: 100%;
+      height: 50%;
+    }
+
+    /* slide function */
+    #s1:checked ~ #slide1,
+    #s2:checked ~ #slide2,
+    #s3:checked ~ #slide3,
+    #s4:checked ~ #slide4,
+    #s5:checked ~ #slide5,
+    #s6:checked ~ #slide6,
+    #s7:checked ~ #slide7 {
+      box-shadow: 0 13px 26px rgba(0, 0, 0.3, 0.5),
+        0 12px 6px rgba(0, 0, 0.3, 0.5);
+      transform: translate3d(0%, 0, 0);
+    }
+    #s1:checked ~ #slide2,
+    #s2:checked ~ #slide3,
+    #s3:checked ~ #slide4,
+    #s4:checked ~ #slide5,
+    #s5:checked ~ #slide6,
+    #s6:checked ~ #slide7,
+    #s7:checked ~ #slide1 {
+      box-shadow: 0 10px 10px rgba(0, 0, 0.3, 0.5),
+        0 2px 2px rgba(0, 0, 0.3, 0.5);
+      transform: translate3d(15%, 0, -100px);
+    }
+    #s1:checked ~ #slide3,
+    #s2:checked ~ #slide4,
+    #s3:checked ~ #slide5,
+    #s4:checked ~ #slide6,
+    #s5:checked ~ #slide7,
+    #s6:checked ~ #slide1,
+    #s7:checked ~ #slide2 {
+      box-shadow: 0 5px 7px rgba(0, 0, 0.3, 0.5);
+      transform: translate3d(30%, 0, -200px);
+    }
+    #s1:checked ~ #slide4,
+    #s2:checked ~ #slide5,
+    #s3:checked ~ #slide6,
+    #s4:checked ~ #slide7,
+    #s5:checked ~ #slide1,
+    #s6:checked ~ #slide2,
+    #s7:checked ~ #slide3 {
+      box-shadow: 0 2px 4px rgba(0, 0, 0.3, 0.5);
+      transform: translate3d(45%, 0, -300px);
+    }
+    #s1:checked ~ #slide5,
+    #s2:checked ~ #slide6,
+    #s3:checked ~ #slide7,
+    #s4:checked ~ #slide1,
+    #s5:checked ~ #slide2,
+    #s6:checked ~ #slide3,
+    #s7:checked ~ #slide4 {
+      box-shadow: 0 10px 10px rgba(0, 0, 0.3, 0.5),
+        0 2px 2px rgba(0, 0, 0.3, 0.5);
+      transform: translate3d(-15%, 0, -100px);
+    }
+    #s1:checked ~ #slide6,
+    #s2:checked ~ #slide7,
+    #s3:checked ~ #slide1,
+    #s4:checked ~ #slide2,
+    #s5:checked ~ #slide3,
+    #s6:checked ~ #slide4,
+    #s7:checked ~ #slide5 {
+      box-shadow: 0 5px 7px rgba(0, 0, 0.3, 0.5);
+      transform: translate3d(-30%, 0, -200px);
+    }
+    #s1:checked ~ #slide7,
+    #s2:checked ~ #slide1,
+    #s3:checked ~ #slide2,
+    #s4:checked ~ #slide3,
+    #s5:checked ~ #slide4,
+    #s6:checked ~ #slide5,
+    #s7:checked ~ #slide6 {
+      box-shadow: 0 2px 4px rgba(0, 0, 0.3, 0.5);
+      transform: translate3d(-45%, 0, -300px);
+    }
+
+    @media (max-width: 520px) {
+      #slider {
+        width: 50%;
+      }
+      input[type="radio"] {
+        margin: 0px 5px 0 0;
+        width: 7px;
+        height: 7px;
+        transform: translateX(-50px);
+        z-index: 1;
+        opacity: 0.2;
+      }
+    }
+    /* cursor css */
+
+    #page span {
+      width: 80px;
+      height: 80px;
+      background-color: rgb(247, 151, 151);
+      transform: translate(-50%, -50%);
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      z-index: 50;
+      border-radius: 50%;
+      animation: cursorAnimation 0.7s ease forwards;
+    }
+    @keyframes cursorAnimation {
+      from {
+        width: 0px;
+        height: 0px;
+        opacity: 1;
+      }
+      to {
+        width: 80px;
+        height: 80px;
+        opacity: 0;
+      }
+    }
+    #page #cursor {
+      width: 30px;
+      height: 30px;
+      position: absolute;
+      z-index: 100;
+
+      top: 0px;
+      left: 0px;
+      background-color: rgba(248, 68, 68, 0.09);
+      border-radius: 50%;
+      border: 3px solid rgb(238, 53, 53);
+    }
+  </style>
+  <body>
+    <!-- loader -->
+    <div class="loader-wrapper">
+      <span class="loader"><span class="loader-inner"></span></span>
+    </div>
+    <!-- carousel -->
+    <div id="page" class="text">
+      <div id="cursor"></div>
+      <section id="slider">
+        <input type="radio" name="slide" id="s1" class="slide" checked />
+        <input type="radio" name="slide" id="s2" class="slide" />
+        <input type="radio" name="slide" id="s3" class="slide" />
+        <input type="radio" name="slide" id="s4" class="slide" />
+        <input type="radio" name="slide" id="s5" class="slide" />
+        <input type="radio" name="slide" id="s6" class="slide" />
+        <input type="radio" name="slide" id="s7" class="slide" />
+
+        <label for="s1" id="slide1"><img src="1.jpeg" alt="" /></label>
+        <label for="s2" id="slide2"><img src="1.jpeg" alt="" /></label>
+        <label for="s3" id="slide3"><img src="1.jpeg" alt="" /></label>
+        <label for="s4" id="slide4"><img src="1.jpeg" alt="" /></label>
+        <label for="s5" id="slide5"><img src="1.jpeg" alt="" /></label>
+        <label for="s6" id="slide6"><img src="1.jpeg" alt="" /></label>
+        <label for="s7" id="slide7"><img src="1.jpeg" alt="" /></label>
+      </section>
+    </div>
+    <script>
+      var loader = document.querySelector(".loader-wrapper");
+
+      setTimeout(() => {
+        loader.style.display = "none";
+      }, 3000);
+    </script>
+    <script>
+      var page = document.querySelector("#page");
+      var cursor = document.querySelector("#cursor");
+
+      move = (e) => {
+        cursor.style.top = `${e.pageY}px`;
+        cursor.style.left = `${e.pageX}px`;
+      };
+      document.addEventListener("mousemove", move);
+
+      cursorAnimation = (e) => {
+        let span = document.createElement("span");
+        span.style.top = `${e.pageY}px`;
+        span.style.left = `${e.pageX}px`;
+        page.appendChild(span);
+        setTimeout(() => {
+          span.remove();
+        }, 1000);
+      };
+      page.addEventListener("click", cursorAnimation);
+    </script>
+  </body>
+</html>
